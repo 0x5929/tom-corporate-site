@@ -1,4 +1,9 @@
+'use client'
+import { useDropdown } from '@/hooks/useDropdown'
+
 export default function Header() {
+    const { checkAndCloseDropDown } = useDropdown()
+
     return (
         <div className='navbar bg-base-100'>
             <div className='navbar-start'>
@@ -7,6 +12,7 @@ export default function Header() {
                         tabIndex={0}
                         role='button'
                         className='btn btn-ghost lg:hidden'
+                        onMouseDown={(e) => checkAndCloseDropDown(e)}
                     >
                         <svg
                             xmlns='http://www.w3.org/2000/svg'

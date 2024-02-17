@@ -35,6 +35,7 @@ export default function ScrollToTop(): JSX.Element | null {
                           bottom: '23%',
                           right: '1%',
                           display: 'block',
+                          zIndex: '9999',
                       }
                     : {}
             }

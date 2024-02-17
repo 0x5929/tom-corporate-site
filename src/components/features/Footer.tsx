@@ -3,7 +3,7 @@ import logo from '@public/logo.svg'
 
 export default function Footer(): JSX.Element {
     return (
-        <footer className="bg-primary rounded-lg shadow dark:bg-gray-900 m-4 mb-0">
+        <footer className="bg-primary rounded-lg shadow dark:bg-gray-900 m-4 mb-0 relative z-998">
             <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <a

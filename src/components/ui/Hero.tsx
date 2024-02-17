@@ -8,7 +8,7 @@ export default function Hero(): JSX.Element {
             <div className={styles.imgShadow}>
                 <Image src={heroPic} alt="hero" placeholder="blur" />
             </div>
-            <div className="flex flex-col absolute lg:top-3/4 top-0">
+            <div className="flex flex-col absolute lg:top-3/4 top-9">
                 <p className="text-2xl text-white uppercase">
                     welcome to the law offices of
                 </p>

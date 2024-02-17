@@ -39,7 +39,7 @@ export default function Header(): JSX.Element {
                         : {}
                 }
                 transition={{
-                    ease: 'linear',
+                    ease: [0.2, 0.45, 0, 1],
                     duration: 0.3,
                     top: { duration: 0.3 },
                 }}

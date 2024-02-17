@@ -16,6 +16,9 @@
             "error",
             {
                 "semi": false
+            },
+            {
+                "singleQuotes": false
             }
         ],
         "new-cap": 0,

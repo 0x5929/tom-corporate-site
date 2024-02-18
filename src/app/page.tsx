@@ -1,5 +1,5 @@
 import Hero from '@/components/ui/Hero'
-import Content from '@/components/ui/Content'
+import Content from '@/components/features/Content'
 
 export default function Home(): JSX.Element {
     return (

@@ -24,6 +24,7 @@ interface Winning {
 interface Values {
     title: string
     desc: string
+    border: string
 }
 
 const navBarTopOffset: number = 20
@@ -76,18 +77,22 @@ const coreValues: Values[] = [
     {
         title: 'Communication',
         desc: 'Thorough and professional; from our initial client meeting to the courtroom',
+        border: 'accent',
     },
     {
         title: 'Education',
         desc: 'Ensuring our clients understand each step of the process',
+        border: 'secondary',
     },
     {
         title: 'Integrity',
         desc: 'Honoring our commitments and practicing truthfulness and accuracy',
+        border: 'secondary',
     },
     {
         title: 'Dedication',
         desc: 'Perseverance and passion to meet our goal of excellence with every case',
+        border: 'accent',
     },
 ]
 
@@ -145,7 +150,7 @@ export default function Content(): JSX.Element {
                 className="w-screen h-content bg-primary -mx-16 relative z-999 flex flex-col gap-8"
             >
                 <div className="divider bg-neutral p-0 m-auto h-px w-full"></div>
-                <div className="pillars py-24 flex sm:flex-row flex-col sm:justify-around justify-center gap-8 items-center">
+                <div className="pillars py-20 flex sm:flex-row flex-col justify-center sm:gap-24 gap-8 items-center">
                     {pillars.map(
                         (pillar: string, indx: number): JSX.Element => (
                             <div
@@ -193,12 +198,15 @@ export default function Content(): JSX.Element {
                         </p>
                     </div>
                 </div>
-                <div className="areas-of-practice flex md:flex-row flex-col justify-center flex-wrap items-center gap-16 py-24">
+                <div
+                    style={{ maxWidth: '1000px' }}
+                    className="areas-of-practice mx-auto flex md:flex-row flex-col justify-center flex-wrap items-center gap-16 py-20"
+                >
                     {areasOfPractice.map(
                         (area: AreasOfPractice, indx: number): JSX.Element => (
                             <div
                                 key={indx}
-                                className="w-72 border border-solid border-neutral rounded-xl px-6 py-3"
+                                className="w-72 border border-solid border-accent rounded-xl px-6 py-3"
                             >
                                 <p className="text-2xl uppercase text-center">
                                     {area.first}
@@ -286,7 +294,7 @@ export default function Content(): JSX.Element {
                         {coreValues.map(
                             (value: Values, indx: number): JSX.Element => (
                                 <div
-                                    className="core-value border border-solid border-secondary rounded-xl px-6 py-3 xs:w-80 xs:h-36"
+                                    className={`core-value border border-solid border-${value.border} rounded-xl px-6 py-3 xs:w-80 xs:h-36`}
                                     key={indx}
                                 >
                                     <p className="text-2xl font-bold text-center">

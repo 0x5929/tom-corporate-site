@@ -101,12 +101,8 @@ export default function Content(): JSX.Element {
     const winningRef: React.MutableRefObject<null> = useRef(null)
     const { update } = useGlobalStore()
     const { scrollY } = useScroll()
-    const [startBlacknavOffset, setStartBlacknavOffset] = useState(
-        document.body.scrollHeight
-    )
-    const [startNavynavOffset, setStartNavynavOffset] = useState(
-        document.body.scrollHeight
-    )
+    const [startBlacknavOffset, setStartBlacknavOffset] = useState(10000)
+    const [startNavynavOffset, setStartNavynavOffset] = useState(10000)
 
     const updateBlacknav: (el: HTMLElement) => void = (
         el: HTMLElement

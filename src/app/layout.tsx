@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import styles from './layout.module.css'
 import Header from '@/components/features/Header'
 import Footer from '@/components/features/Footer'
 import ScrollToTop from '@/components/features/ScrollToTop'
@@ -21,7 +22,9 @@ export default function RootLayout({
         <html data-theme="dark" lang="en">
             <body className={`${inter.className} bg-black`}>
                 <Header />
-                {children}
+                <main className="w-full">
+                    <div className={styles.mainContainer}>{children}</div>
+                </main>
                 <ScrollToTop />
                 <Footer />
             </body>

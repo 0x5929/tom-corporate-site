@@ -142,16 +142,18 @@ export default function Content(): JSX.Element {
         <>
             <div
                 ref={contentRef}
-                className="w-full h-content bg-primary -mx-16 relative z-999 flex flex-col gap-8"
+                className="w-screen h-content bg-primary -mx-16 relative z-999 flex flex-col gap-8"
             >
                 <div className="pillars py-24 flex sm:flex-row flex-col sm:justify-around justify-center gap-8 items-center">
                     {pillars.map(
                         (pillar: string, indx: number): JSX.Element => (
                             <div
                                 key={indx}
-                                className="border border-solid border-neutral rounded-xl px-6 py-3"
+                                className="border border-solid border-neutral rounded-xl px-6 py-3 xs:w-56"
                             >
-                                <p className="text-3xl font-bold">{pillar}</p>
+                                <p className="text-3xl font-bold text-center">
+                                    {pillar}
+                                </p>
                             </div>
                         )
                     )}
@@ -195,7 +197,7 @@ export default function Content(): JSX.Element {
                         (area: AreasOfPractice, indx: number): JSX.Element => (
                             <div
                                 key={indx}
-                                className="border border-solid border-neutral rounded-xl px-6 py-3"
+                                className="w-72 border border-solid border-neutral rounded-xl px-6 py-3"
                             >
                                 <p className="text-2xl uppercase text-center">
                                     {area.first}
@@ -223,7 +225,7 @@ export default function Content(): JSX.Element {
                 ))}
             </div>
             <div className="divider py-24"></div>
-            <div className="mission flex justify-center flex-wrap-reverse items-start gap-16 mx-auto w-full">
+            <div className="mission flex justify-center flex-wrap-reverse items-center gap-16 mx-auto w-full">
                 <div className="mission-statement lg:w-1/2 lg:px-0 px-16">
                     <p className="text-3xl font-bold mb-4">Our mission</p>
                     <p className="text-lg">
@@ -260,7 +262,7 @@ export default function Content(): JSX.Element {
                 </div>
             </div>
             <div className="divider py-24"></div>
-            <div className="values pb-24 flex justify-center flex-wrap items-start gap-16 mx-auto w-full">
+            <div className="values pb-24 flex justify-center flex-wrap items-center gap-16 mx-auto w-full">
                 <div className="mission-img">
                     <Image
                         src={values}
@@ -277,7 +279,7 @@ export default function Content(): JSX.Element {
                         {coreValues.map(
                             (value: Values, indx: number): JSX.Element => (
                                 <div
-                                    className="core-value border border-solid border-neutral rounded-xl px-6 py-3 xs:w-96"
+                                    className="core-value border border-solid border-secondary rounded-xl px-6 py-3 xs:w-80 xs:h-36"
                                     key={indx}
                                 >
                                     <p className="text-2xl font-bold text-center">

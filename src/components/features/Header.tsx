@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import logo from '@public/logo.svg'
 import { useState } from 'react'
+import { useGlobalStore } from '@/app/store/zustand'
 import { useDropdown } from '@/hooks/useDropdown'
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion'
 
@@ -9,8 +10,10 @@ const fixedNavOffset: number = 30
 
 export default function Header(): JSX.Element {
     const { checkAndCloseDropDown } = useDropdown()
+    const { contentPos } = useGlobalStore()
     const { scrollY } = useScroll()
     const [fixedNav, setFixedNav] = useState(false)
+    const [blackNav, setBlackNav] = useState(false)
 
     useMotionValueEvent(scrollY, 'change', (latest): void => {
         if (latest > fixedNavOffset) {
@@ -18,12 +21,18 @@ export default function Header(): JSX.Element {
         } else {
             setFixedNav(false)
         }
+
+        if (latest > (contentPos ?? document.body.scrollHeight)) {
+            setBlackNav(true)
+        } else {
+            setBlackNav(false)
+        }
     })
 
     return (
         <div className="flex justify-center">
             <motion.div
-                className="navbar bg-primary"
+                className={`navbar ${blackNav ? 'bg-black' : 'bg-primary'}`}
                 initial={{
                     width: '100%',
                 }}
@@ -129,7 +138,11 @@ export default function Header(): JSX.Element {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a href="/#" className="btn">
+                    <a
+                        href="/#"
+                        className={`btn border-none ${blackNav ? 'bg-black' : 'bg-primary'}`}
+                        // className="btn"
+                    >
                         Get started
                     </a>
                 </div>

@@ -10,10 +10,9 @@ const fixedNavOffset: number = 30
 
 export default function Header(): JSX.Element {
     const { checkAndCloseDropDown } = useDropdown()
-    const { contentPos } = useGlobalStore()
+    const { blacknav } = useGlobalStore()
     const { scrollY } = useScroll()
     const [fixedNav, setFixedNav] = useState(false)
-    const [blackNav, setBlackNav] = useState(false)
 
     useMotionValueEvent(scrollY, 'change', (latest): void => {
         if (latest > fixedNavOffset) {
@@ -21,18 +20,12 @@ export default function Header(): JSX.Element {
         } else {
             setFixedNav(false)
         }
-
-        if (latest > (contentPos ?? document.body.scrollHeight)) {
-            setBlackNav(true)
-        } else {
-            setBlackNav(false)
-        }
     })
 
     return (
         <div className="flex justify-center">
             <motion.div
-                className={`navbar ${blackNav ? 'bg-black' : 'bg-primary'}`}
+                className={`navbar ${blacknav ? 'bg-black' : 'bg-primary'}`}
                 initial={{
                     width: '100%',
                 }}
@@ -140,7 +133,7 @@ export default function Header(): JSX.Element {
                 <div className="navbar-end">
                     <a
                         href="/#"
-                        className={`btn border-none ${blackNav ? 'bg-black' : 'bg-primary'}`}
+                        className={`btn border-none ${blacknav ? 'bg-black' : 'bg-primary'}`}
                         // className="btn"
                     >
                         Get started

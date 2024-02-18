@@ -1,11 +1,11 @@
 import { create } from 'zustand'
 
 interface GlobalStore {
-    contentPos: number | null
-    update: (pos: number) => void
+    blacknav: boolean
+    update: (state: boolean) => void
 }
 
 export const useGlobalStore = create<GlobalStore>()((set) => ({
-    contentPos: null,
-    update: (pos) => set(() => ({ contentPos: pos })),
+    blacknav: false,
+    update: (state) => set(() => ({ blacknav: state })),
 }))

@@ -1,12 +1,15 @@
 'use client'
-import { useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Image, { StaticImageData } from 'next/image'
 import tom from '@public/tom.png'
+import mission from '@public/mission.jpg'
+import values from '@public/values.jpg'
 import { useGlobalStore } from '@/app/store/zustand'
 import Card from '@/components/ui/Card'
 import fraud from '@public/fraud.jpg'
 import notGuilty from '@public/not-guilty.jpg'
 import wrongfulTermination from '@public/wrongful-termination.jpg'
+import { useScroll, useMotionValueEvent } from 'framer-motion'
 
 interface AreasOfPractice {
     first: string
@@ -18,6 +21,13 @@ interface Winning {
     secondTitle: string
     subTitle: string
 }
+interface Values {
+    title: string
+    desc: string
+}
+
+const navBarTopOffset: number = 20
+const navBarHeight: number = 68
 
 const pillars = ['Experience', 'Tenacity', 'Results'] as const
 const areasOfPractice: AreasOfPractice[] = [
@@ -62,16 +72,72 @@ const winnings: Winning[] = [
         subTitle: '$684,000',
     },
 ]
+const coreValues: Values[] = [
+    {
+        title: 'Communication',
+        desc: 'Thorough and professional; from our initial client meeting to the courtroom',
+    },
+    {
+        title: 'Education',
+        desc: 'Ensuring our clients understand each step of the process',
+    },
+    {
+        title: 'Integrity',
+        desc: 'Honoring our commitments and practicing truthfulness and accuracy',
+    },
+    {
+        title: 'Dedication',
+        desc: 'Perseverance and passion to meet our goal of excellence with every case',
+    },
+]
 
 export default function Content(): JSX.Element {
-    const contentRef = useRef(null)
+    const contentRef: React.MutableRefObject<null> = useRef(null)
+    const winningRef: React.MutableRefObject<null> = useRef(null)
     const { update } = useGlobalStore()
+    const { scrollY } = useScroll()
+    const [startBlacknavOffset, setStartBlacknavOffset] = useState(
+        document.body.scrollHeight
+    )
+    const [startNavynavOffset, setStartNavynavOffset] = useState(
+        document.body.scrollHeight
+    )
 
-    useEffect(() => {
+    const updateBlacknav: (el: HTMLElement) => void = (
+        el: HTMLElement
+    ): void => {
+        setStartBlacknavOffset(el.offsetTop - navBarTopOffset - navBarHeight)
+    }
+    const updateNavynav: (el: HTMLElement) => void = (
+        el: HTMLElement
+    ): void => {
+        setStartNavynavOffset(
+            el.offsetTop -
+                navBarTopOffset -
+                navBarHeight -
+                navBarHeight -
+                navBarHeight
+        )
+    }
+
+    useMotionValueEvent(scrollY, 'change', (latest: number): void => {
+        if (latest >= startBlacknavOffset && latest <= startNavynavOffset) {
+            return update(true)
+        } else {
+            return update(false)
+        }
+    })
+    useEffect((): void => {
         if (contentRef.current) {
-            update(contentRef.current['offsetTop'] - 20 - 68)
+            return updateBlacknav(contentRef.current)
         }
     }, [])
+    useEffect((): void => {
+        if (winningRef.current) {
+            return updateNavynav(winningRef.current)
+        }
+    }, [])
+
     return (
         <>
             <div
@@ -142,7 +208,10 @@ export default function Content(): JSX.Element {
                     )}
                 </div>
             </div>
-            <div className="winning flex my-24 md:flex-row flex-col justify-center flex-wrap items-center gap-16">
+            <div
+                ref={winningRef}
+                className="winning flex mt-24 md:flex-row flex-col justify-center flex-wrap items-center gap-16"
+            >
                 {winnings.map((winning: Winning, indx: number) => (
                     <Card
                         key={indx}
@@ -152,6 +221,74 @@ export default function Content(): JSX.Element {
                         subTitle={winning.subTitle}
                     />
                 ))}
+            </div>
+            <div className="divider py-24"></div>
+            <div className="mission flex justify-center flex-wrap-reverse items-start gap-16 mx-auto w-full">
+                <div className="mission-statement lg:w-1/2 lg:px-0 px-16">
+                    <p className="text-3xl font-bold mb-4">Our mission</p>
+                    <p className="text-lg">
+                        The Law Offices of Pelayes & Yu, APC is a premier law
+                        firm that strives to achieve results that exceed
+                        expectations. We deliver highly-skilled, effective, and
+                        innovative legal representation to our clients in a
+                        timely manner and at a reasonable cost. We take our time
+                        to listen to and understand our clients’ concerns and
+                        customize a solution that directly responds to their
+                        individual needs.
+                    </p>
+                    <p className="text-lg">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore
+                        magna aliqua. Pharetra diam sit amet nisl suscipit
+                        adipiscing. Volutpat consequat mauris nunc congue nisi.
+                        Integer vitae justo eget magna fermentum. Vulputate odio
+                        ut enim blandit volutpat maecenas. Amet purus gravida
+                        quis blandit. Non consectetur a erat nam at lectus.
+                        Lacinia quis vel eros donec ac odio tempor orci. Leo
+                        urna molestie at elementum eu facilisis sed odio. Congue
+                        mauris rhoncus aenean vel elit. Lectus mauris ultrices
+                        eros in cursus turpis massa tincidunt.
+                    </p>
+                </div>
+                <div className="mission-img">
+                    <Image
+                        src={mission}
+                        width={500}
+                        height={500}
+                        alt="mission"
+                    />
+                </div>
+            </div>
+            <div className="divider py-24"></div>
+            <div className="values pb-24 flex justify-center flex-wrap items-start gap-16 mx-auto w-full">
+                <div className="mission-img">
+                    <Image
+                        src={values}
+                        width={500}
+                        height={500}
+                        alt="mission"
+                    />
+                </div>
+                <div className="mission-statement lg:w-1/2">
+                    <p className="text-3xl font-bold mb-4 text-center">
+                        Our values
+                    </p>
+                    <div className="values-wrapper flex flex-wrap justify-center items-center gap-8">
+                        {coreValues.map(
+                            (value: Values, indx: number): JSX.Element => (
+                                <div
+                                    className="core-value border border-solid border-neutral rounded-xl px-6 py-3 xs:w-96"
+                                    key={indx}
+                                >
+                                    <p className="text-2xl font-bold text-center">
+                                        {value.title}
+                                    </p>
+                                    <p className="text-lg">{value.desc}</p>
+                                </div>
+                            )
+                        )}
+                    </div>
+                </div>
             </div>
         </>
     )

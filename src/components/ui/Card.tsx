@@ -12,14 +12,18 @@ export default function Card({
     subTitle: string
 }): JSX.Element {
     return (
-        <div className="card w-96 bg-primary shadow-xl">
+        <div className="card w-96 bg-accent shadow-xl">
             <figure>
                 <Image src={img} alt="card-img" />
             </figure>
             <div className="card-body items-center">
-                <h2 className="card-title uppercase">{titleOne}</h2>
-                <div className="card-title uppercase">{titleTwo}</div>
-                <p className="uppercase">{subTitle}</p>
+                <h2 className="card-title text-black uppercase">{titleOne}</h2>
+                <div className="card-title text-black uppercase">
+                    {titleTwo}
+                </div>
+                <div className="badge badge-outline border-black">
+                    <p className="uppercase text-black">{subTitle}</p>
+                </div>
             </div>
         </div>
     )

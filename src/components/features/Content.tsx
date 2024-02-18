@@ -69,7 +69,7 @@ const winnings: Winning[] = [
         src: wrongfulTermination,
         firstTitle: 'wrongful',
         secondTitle: 'termination',
-        subTitle: '$684,000',
+        subTitle: '$684,000.00',
     },
 ]
 const coreValues: Values[] = [
@@ -114,9 +114,9 @@ export default function Content(): JSX.Element {
         setStartNavynavOffset(
             el.offsetTop -
                 navBarTopOffset -
-                navBarHeight -
-                navBarHeight -
-                navBarHeight
+                navBarHeight +
+                navBarHeight +
+                el.getBoundingClientRect().height
         )
     }
 
@@ -144,6 +144,7 @@ export default function Content(): JSX.Element {
                 ref={contentRef}
                 className="w-screen h-content bg-primary -mx-16 relative z-999 flex flex-col gap-8"
             >
+                <div className="divider bg-neutral p-0 m-auto h-px w-full"></div>
                 <div className="pillars py-24 flex sm:flex-row flex-col sm:justify-around justify-center gap-8 items-center">
                     {pillars.map(
                         (pillar: string, indx: number): JSX.Element => (
@@ -210,55 +211,61 @@ export default function Content(): JSX.Element {
                     )}
                 </div>
             </div>
-            <div
-                ref={winningRef}
-                className="winning flex mt-24 md:flex-row flex-col justify-center flex-wrap items-center gap-16"
-            >
-                {winnings.map((winning: Winning, indx: number) => (
-                    <Card
-                        key={indx}
-                        img={winning.src}
-                        titleOne={winning.firstTitle}
-                        titleTwo={winning.secondTitle}
-                        subTitle={winning.subTitle}
-                    />
-                ))}
-            </div>
-            <div className="divider py-24"></div>
-            <div className="mission flex justify-center flex-wrap-reverse items-center gap-16 mx-auto w-full">
-                <div className="mission-statement lg:w-1/2 lg:px-0 px-16">
-                    <p className="text-3xl font-bold mb-4">Our mission</p>
-                    <p className="text-lg">
-                        The Law Offices of Pelayes & Yu, APC is a premier law
-                        firm that strives to achieve results that exceed
-                        expectations. We deliver highly-skilled, effective, and
-                        innovative legal representation to our clients in a
-                        timely manner and at a reasonable cost. We take our time
-                        to listen to and understand our clients’ concerns and
-                        customize a solution that directly responds to their
-                        individual needs.
-                    </p>
-                    <p className="text-lg">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Pharetra diam sit amet nisl suscipit
-                        adipiscing. Volutpat consequat mauris nunc congue nisi.
-                        Integer vitae justo eget magna fermentum. Vulputate odio
-                        ut enim blandit volutpat maecenas. Amet purus gravida
-                        quis blandit. Non consectetur a erat nam at lectus.
-                        Lacinia quis vel eros donec ac odio tempor orci. Leo
-                        urna molestie at elementum eu facilisis sed odio. Congue
-                        mauris rhoncus aenean vel elit. Lectus mauris ultrices
-                        eros in cursus turpis massa tincidunt.
-                    </p>
+            <div className="winning-container w-screen bg-primary flex flex-col">
+                <div className="divider bg-neutral p-0 m-auto h-px w-full"></div>
+                <div
+                    ref={winningRef}
+                    className="winning flex mt-24 md:flex-row flex-col justify-center flex-wrap items-center gap-16"
+                >
+                    {winnings.map((winning: Winning, indx: number) => (
+                        <Card
+                            key={indx}
+                            img={winning.src}
+                            titleOne={winning.firstTitle}
+                            titleTwo={winning.secondTitle}
+                            subTitle={winning.subTitle}
+                        />
+                    ))}
                 </div>
-                <div className="mission-img">
-                    <Image
-                        src={mission}
-                        width={500}
-                        height={500}
-                        alt="mission"
-                    />
+                <div className="divider bg-neutral p-0 mt-24 m-auto h-px w-full"></div>
+            </div>
+            <div className="mission-container w-full bg-black">
+                <div className="mission pt-24 flex justify-center flex-wrap-reverse items-center gap-16 mx-auto w-full">
+                    <div className="mission-statement lg:w-1/2 lg:px-0 px-16">
+                        <p className="text-3xl font-bold mb-4">Our mission</p>
+                        <p className="text-lg">
+                            The Law Offices of Pelayes & Yu, APC is a premier
+                            law firm that strives to achieve results that exceed
+                            expectations. We deliver highly-skilled, effective,
+                            and innovative legal representation to our clients
+                            in a timely manner and at a reasonable cost. We take
+                            our time to listen to and understand our clients’
+                            concerns and customize a solution that directly
+                            responds to their individual needs.
+                        </p>
+                        <p className="text-lg">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Pharetra diam sit amet nisl
+                            suscipit adipiscing. Volutpat consequat mauris nunc
+                            congue nisi. Integer vitae justo eget magna
+                            fermentum. Vulputate odio ut enim blandit volutpat
+                            maecenas. Amet purus gravida quis blandit. Non
+                            consectetur a erat nam at lectus. Lacinia quis vel
+                            eros donec ac odio tempor orci. Leo urna molestie at
+                            elementum eu facilisis sed odio. Congue mauris
+                            rhoncus aenean vel elit. Lectus mauris ultrices eros
+                            in cursus turpis massa tincidunt.
+                        </p>
+                    </div>
+                    <div className="mission-img">
+                        <Image
+                            src={mission}
+                            width={500}
+                            height={500}
+                            alt="mission"
+                        />
+                    </div>
                 </div>
             </div>
             <div className="divider py-24"></div>

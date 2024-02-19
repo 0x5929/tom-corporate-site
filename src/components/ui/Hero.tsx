@@ -1,4 +1,5 @@
 import styles from './hero.module.css'
+import AnimatePraciceAreas from '@/components/features/AnimatePracticeAreas/AnimateText'
 
 export default function Hero(): JSX.Element {
     return (
@@ -17,6 +18,7 @@ export default function Hero(): JSX.Element {
                         client focused. results driven.
                     </p>
                 </div>
+                <AnimatePraciceAreas delay={1} />
             </div>
         </div>
     )

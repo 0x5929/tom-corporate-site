@@ -1,4 +1,5 @@
 'use client'
+import classNames from 'classnames'
 import { useState, useRef, useEffect } from 'react'
 import Image, { StaticImageData } from 'next/image'
 import tom from '@public/tom.png'
@@ -290,7 +291,22 @@ export default function Content(): JSX.Element {
                         {coreValues.map(
                             (value: Values, indx: number): JSX.Element => (
                                 <div
-                                    className={`core-value border border-solid border-${value.border} rounded-xl px-6 py-3 xs:w-80 xs:h-36`}
+                                    className={classNames(
+                                        'core-value',
+                                        'border',
+                                        'border-solid',
+                                        'rounded-xl',
+                                        'px-6',
+                                        'py-3',
+                                        'xs:w-80',
+                                        'xs:h-36',
+                                        {
+                                            'border-secondary':
+                                                value.border === 'secondary',
+                                            'border-accent':
+                                                value.border === 'accent',
+                                        }
+                                    )}
                                     key={indx}
                                 >
                                     <p className="text-2xl font-bold text-center">

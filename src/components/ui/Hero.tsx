@@ -18,6 +18,7 @@ export default function Hero(): JSX.Element {
                         client focused. results driven.
                     </p>
                 </div>
+                <div className="xs:pt-0 pt-1"></div>
                 <AnimatePraciceAreas delay={1} />
             </div>
         </div>

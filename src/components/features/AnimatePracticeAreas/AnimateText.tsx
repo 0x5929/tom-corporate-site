@@ -32,7 +32,7 @@ export default function AnimText({ delay }: IAnimTextProps) {
     }, [])
 
     return (
-        <span className="mt-auto ml-auto w-[350px] h-[100px]">
+        <span className="mt-auto lg:ml-auto ml-2 w-[350px] h-[100px]">
             <motion.span className="text-3xl font-bold text-neutral">
                 {displayText}
             </motion.span>

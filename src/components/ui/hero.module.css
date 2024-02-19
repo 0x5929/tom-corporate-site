@@ -18,10 +18,12 @@
     margin-right: auto;
     max-width: 1470px;
     min-width: 300px;
-    height: 580px;
+    height: 635px;
     width: 100%;
     background-image: url('/hero.png');
     background-repeat: no-repeat;
     background-size: 1470px 980px;
     background-position: 50% 70%;
+
+    @apply lg:flex-row flex-col;
 }

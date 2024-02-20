@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import classNames from 'classnames'
 
 const cursorVariants = {
     blinking: {
@@ -13,12 +14,21 @@ const cursorVariants = {
     },
 }
 
-export default function CursorBlinker() {
+export default function CursorBlinker({
+    smallCursor,
+}: {
+    smallCursor: boolean
+}) {
     return (
         <motion.div
             variants={cursorVariants}
             animate="blinking"
-            className="inline-block h-5 w-[3px] translate-y-1 bg-accent"
+            className={classNames('inline-block', 'ml-[1px]', 'w-[4px]', {
+                'h-4': smallCursor,
+                'h-6': !smallCursor,
+                'bg-accent': smallCursor,
+                'bg-neutral': !smallCursor,
+            })}
         />
     )
 }

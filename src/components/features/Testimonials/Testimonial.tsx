@@ -58,7 +58,6 @@ interface Data {
 
 export interface ITestimonialProps {
     data: Data
-    previous?: () => void
     next?: () => void
     isVisible?: boolean
     variants: string
@@ -67,7 +66,6 @@ export interface ITestimonialProps {
 
 function Testimonial({
     data,
-    previous = () => {},
     next = () => {},
     isVisible = true,
     variants,

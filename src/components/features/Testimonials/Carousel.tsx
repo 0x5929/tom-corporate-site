@@ -16,9 +16,6 @@ function Carousel({ children, changeTransition, transition }: ICarouselProps) {
             case 'ArrowRight':
                 next()
                 break
-            case 'ArrowLeft':
-                previous()
-                break
         }
     }
     // event listener for left/right keys
@@ -40,15 +37,6 @@ function Carousel({ children, changeTransition, transition }: ICarouselProps) {
         }
         setIndex(newIndex)
     }
-    // shows previous element
-    function previous() {
-        // switch direction for slide
-        if (transition === 'slide_r') changeTransition('slide_l')
-        let newIndex
-        if (index === 0) newIndex = children.length - 1
-        else newIndex = index - 1
-        setIndex(newIndex)
-    }
 
     return (
         <div
@@ -59,7 +47,6 @@ function Carousel({ children, changeTransition, transition }: ICarouselProps) {
                 if (React.isValidElement<TestimonialPropsType>(child)) {
                     return React.cloneElement(child, {
                         next: next,
-                        previous: previous,
                         isVisible: i === index ? true : false,
                         index: index,
                     })

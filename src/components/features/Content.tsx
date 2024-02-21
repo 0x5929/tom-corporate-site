@@ -21,17 +21,31 @@ const data: {
     image: string
 }[] = [
     {
-        name: 'Tanya Sinclair',
-        role: 'UX Engineer',
+        name: 'John Smith',
+        role: 'Police Officer, 10 yrs LAPD',
         testimonial:
-            'I’ve been interested in coding for a while but never taken the jump, until now. I couldn’t recommend this course enough. I’m now in the job of my dreams and so excited about the future',
+            'Euismod nisi porta lorem mollis aliquam ut porttitor leo a diam sollicitudin tempor id eu nisl nunc mi ipsum faucibus vitae aliquet nec ullamcorper sit amet risus nullam eget felis',
         image: 'images/image-tanya.jpg',
     },
     {
-        name: ' John Tarkpor',
-        role: 'Junior Front-end Developer',
+        name: 'Jane Smith',
+        role: 'Deputy Sheriff, 15 yrs LASD',
         testimonial:
-            'If you want to lay the best foundation possible I’d recommend taking this course. The depth the instructors go into is incredible. I now feel so confident about starting up as a professional developer.',
+            'In ante metus dictum at tempor commodo ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia at quis risus sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit',
+        image: 'images/image-john.jpg',
+    },
+    {
+        name: 'Brady Shannon',
+        role: 'Probation Officer, 7 yrs LA County Probation Department',
+        testimonial:
+            'In ante metus dictum at tempor commodo ullamcorper a lacus vestibulum sed arcu non odio euismod lacinia at quis risus sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit',
+        image: 'images/image-john.jpg',
+    },
+    {
+        name: 'Walton Linsay',
+        role: 'Deputy Sheriff, 15 yrs OCSD',
+        testimonial:
+            'Blandit aliquam etiam erat velit scelerisque in dictum non consectetur a erat nam at lectus urna duis convallis convallis tellus id interdum velit laoreet id donec ultrices tincidunt arcu non',
         image: 'images/image-john.jpg',
     },
 ]
@@ -302,7 +316,7 @@ export default function Content(): JSX.Element {
                 </div>
             </div>
             <div className="divider py-24"></div>
-            <div className="values pb-24 flex justify-center flex-wrap items-center gap-16 mx-auto w-full">
+            <div className="values lg:pb-24 pb-8 flex justify-center flex-wrap items-center gap-16 mx-auto w-full">
                 <div className="mission-img">
                     <Image
                         src={values}
@@ -347,7 +361,7 @@ export default function Content(): JSX.Element {
                     </div>
                 </div>
             </div>
-            <div className="testimonials w-full md:aspect-[1.8] md:w-[960px] lg:w-[1160px] xl:w-[1440px]">
+            <div className="testimonials h-[400px] w-full md:aspect-[1.8] md:w-[960px] lg:w-[1160px] xl:w-[1440px]">
                 <Carousel
                     changeTransition={changeTransition}
                     transition={transition}

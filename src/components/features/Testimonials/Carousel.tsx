@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect, memo } from 'react'
-// types
 import { ITestimonialProps as TestimonialPropsType } from './Testimonial'
 
 export interface ICarouselProps {
@@ -30,12 +29,15 @@ function Carousel({ children, changeTransition, transition }: ICarouselProps) {
         }
     }, [index, transition])
     // shows next element
-    function next() {
+    const next = () => {
         // switch direction for slide
         if (transition === 'slide_l') changeTransition('slide_r')
         let newIndex
-        if (index === children.length - 1) newIndex = 0
-        else newIndex = index + 1
+        if (index === children.length - 1) {
+            newIndex = 0
+        } else {
+            newIndex = index + 1
+        }
         setIndex(newIndex)
     }
     // shows previous element
@@ -51,7 +53,7 @@ function Carousel({ children, changeTransition, transition }: ICarouselProps) {
     return (
         <div
             id="carousel"
-            className="relative min-h-[40rem] overflow-hidden xs:min-h-[46rem] sm:min-h-[51rem] md:h-full md:min-h-fit md:w-full"
+            className="relative min-h-[40rem] overflow-hidden xs:min-h-[46rem] sm:min-h-[51rem] md:h-full md:min-h-fit md:w-full mx-auto"
         >
             {children.map((child, i) => {
                 if (React.isValidElement<TestimonialPropsType>(child)) {
@@ -59,6 +61,7 @@ function Carousel({ children, changeTransition, transition }: ICarouselProps) {
                         next: next,
                         previous: previous,
                         isVisible: i === index ? true : false,
+                        index: index,
                     })
                 }
             })}

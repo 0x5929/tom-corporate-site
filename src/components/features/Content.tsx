@@ -381,6 +381,7 @@ export default function Content(): JSX.Element {
                                     data={item}
                                     key={i}
                                     variants={transition}
+                                    index={i}
                                 />
                             )
                         }

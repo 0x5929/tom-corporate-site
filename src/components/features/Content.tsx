@@ -10,7 +10,31 @@ import Card from '@/components/ui/Card'
 import fraud from '@public/fraud.jpg'
 import notGuilty from '@public/not-guilty.jpg'
 import wrongfulTermination from '@public/wrongful-termination.jpg'
+import Carousel from './Testimonials/Carousel'
+import Testimonial from './Testimonials/Testimonial'
 import { useScroll, useMotionValueEvent } from 'framer-motion'
+
+const data: {
+    name: string
+    role: string
+    testimonial: string
+    image: string
+}[] = [
+    {
+        name: 'Tanya Sinclair',
+        role: 'UX Engineer',
+        testimonial:
+            'I’ve been interested in coding for a while but never taken the jump, until now. I couldn’t recommend this course enough. I’m now in the job of my dreams and so excited about the future',
+        image: 'images/image-tanya.jpg',
+    },
+    {
+        name: ' John Tarkpor',
+        role: 'Junior Front-end Developer',
+        testimonial:
+            'If you want to lay the best foundation possible I’d recommend taking this course. The depth the instructors go into is incredible. I now feel so confident about starting up as a professional developer.',
+        image: 'images/image-john.jpg',
+    },
+]
 
 interface AreasOfPractice {
     first: string
@@ -104,6 +128,10 @@ export default function Content(): JSX.Element {
     const { scrollY } = useScroll()
     const [startBlacknavOffset, setStartBlacknavOffset] = useState(10000)
     const [startNavynavOffset, setStartNavynavOffset] = useState(10000)
+    const [transition, setTransition] = useState('slide_r')
+    const changeTransition = (transition: string) => {
+        setTransition(transition)
+    }
 
     const updateBlacknav: (el: HTMLElement) => void = (
         el: HTMLElement
@@ -318,6 +346,32 @@ export default function Content(): JSX.Element {
                         )}
                     </div>
                 </div>
+            </div>
+            <div className="testimonials w-full md:aspect-[1.8] md:w-[960px] lg:w-[1160px] xl:w-[1440px]">
+                <Carousel
+                    changeTransition={changeTransition}
+                    transition={transition}
+                >
+                    {data.map(
+                        (
+                            item: {
+                                name: string
+                                role: string
+                                testimonial: string
+                                image: string
+                            },
+                            i: number
+                        ) => {
+                            return (
+                                <Testimonial
+                                    data={item}
+                                    key={i}
+                                    variants={transition}
+                                />
+                            )
+                        }
+                    )}
+                </Carousel>
             </div>
         </>
     )
